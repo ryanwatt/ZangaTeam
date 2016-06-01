@@ -3,6 +3,8 @@ package com.zangateam.ryanwatt.zangateam;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -12,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test() {
-        ;
+        String testString = "This is a test";
     }
 }
