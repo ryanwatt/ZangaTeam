@@ -15,5 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void notATest() {
         String testString = "This IS a test"; //Raleigh's comment
+        // another comment
     }
 }
