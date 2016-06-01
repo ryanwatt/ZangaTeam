@@ -16,4 +16,7 @@ public class MainActivity extends AppCompatActivity {
     public void notATest() {
         String testString = "This is not a test";
     }
+    System.out.println("Java cake");
 }
+
+
