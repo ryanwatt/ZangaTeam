@@ -17,4 +17,7 @@ public class MainActivity extends AppCompatActivity {
         String testString = "This IS a test"; //Raleigh's comment
         // another comment
     }
+    System.out.println("Java cake");
 }
+
+
