@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void test() {
-        String testString = "This is a test";
+    public void notATest() {
+        String testString = "This is not a test";
     }
 }
