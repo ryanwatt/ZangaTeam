@@ -116,4 +116,8 @@ public class Feed extends AsyncTask<Void, Void, Void> {
             Log.d("description", event.getDescription());
         }
     }
+
+    public List<Event> getEvents() {
+        return events;
+    }
 }
