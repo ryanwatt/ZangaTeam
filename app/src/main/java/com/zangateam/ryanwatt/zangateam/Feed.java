@@ -1,14 +1,16 @@
 package com.zangateam.ryanwatt.zangateam;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Process;
+
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+
 import android.widget.ListView;
 
-import org.apache.http.HttpConnection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -32,7 +34,9 @@ public class Feed extends AsyncTask<Void, Void, Void> {
     URL url;
     Filter filter;
     List<Event> events = new ArrayList<Event>();
-    ArrayAdapter<Event> adapter;
+    ArrayAdapter<String> adapter;
+
+
 
     public Feed(Context context) {
         this.context = context;
@@ -110,14 +114,23 @@ public class Feed extends AsyncTask<Void, Void, Void> {
     }
 
     private void populateListView() {
+        View rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+        ListView listView = (ListView) rootView.findViewById(R.id.eventsList);
+
+        List<String> titleList = new ArrayList<>();
+
         for (Event event : events) {
-            Log.d("title", event.getTitle());
-            Log.d("time", event.getTime());
-            Log.d("description", event.getDescription());
+            titleList.add(event.getTitle());
         }
+
+        adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, titleList);
+        listView.setAdapter(adapter);
+
+//        for (Event event : events) {
+//            Log.d("title", event.getTitle());
+//            Log.d("time", event.getTime());
+//            Log.d("description", event.getDescription());
+//        }
     }
 
-    public List<Event> getEvents() {
-        return events;
-    }
 }
