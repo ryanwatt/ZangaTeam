@@ -3,8 +3,6 @@ package com.zangateam.ryanwatt.zangateam;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import java.io.File;
-
 public class MainActivity extends AppCompatActivity {
     Feed feed;
 
@@ -12,7 +10,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Feed feed = new Feed(this);
+
+        feed = new Feed(this);
         feed.execute();
     }
+
 }
