@@ -128,26 +128,8 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         View rootView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
         ListView listView = (ListView) rootView.findViewById(R.id.eventsList);
 
-        List<String> titleList = new ArrayList<>();
-//        List<String> descriptionList = new ArrayList<>();
-//        List<String> dateList = new ArrayList<>();
-//        List info = new ArrayList();
-
-        for (Event event : events) {
-            titleList.add(event.getTitle());
-//            descriptionList.add(event.getDescription());
-//            dateList.add(event.getTime());
-        }
-
-//        info.add(titleList);
-//        info.add(descriptionList);
-//        info.add(dateList);
-
-        adapter = new ArrayAdapter<Event>(context, android.R.layout.simple_list_item_1, events);
+        adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, events);
         listView.setAdapter(adapter);
-
-
-
 
         return listView;
 
