@@ -36,8 +36,7 @@ public class Feed extends AsyncTask<Void, Void, Void> {
     URL url;
     Filter filter;
     List<Event> events = new ArrayList<Event>();
-    ArrayAdapter<String> adapter;
-
+    ArrayAdapter<Event> adapter;
 
 
     public Feed(Context context) {
@@ -126,24 +125,33 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    private void populateListView() {
-        View rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+    public ListView populateListView() {
+        View rootView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
         ListView listView = (ListView) rootView.findViewById(R.id.eventsList);
 
         List<String> titleList = new ArrayList<>();
+//        List<String> descriptionList = new ArrayList<>();
+//        List<String> dateList = new ArrayList<>();
+//        List info = new ArrayList();
 
         for (Event event : events) {
             titleList.add(event.getTitle());
+//            descriptionList.add(event.getDescription());
+//            dateList.add(event.getTime());
         }
 
-        adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, titleList);
+//        info.add(titleList);
+//        info.add(descriptionList);
+//        info.add(dateList);
+
+        adapter = new ArrayAdapter<Event>(context, android.R.layout.simple_list_item_1, events);
         listView.setAdapter(adapter);
 
-//        for (Event event : events) {
-//            Log.d("title", event.getTitle());
-//            Log.d("time", event.getTime());
-//            Log.d("description", event.getDescription());
-//        }
+
+
+
+        return listView;
+
     }
 
 }
