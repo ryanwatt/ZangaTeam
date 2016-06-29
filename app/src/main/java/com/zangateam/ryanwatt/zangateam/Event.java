@@ -1,7 +1,11 @@
 package com.zangateam.ryanwatt.zangateam;
 
 /**
- * Created by nickzarate on 6/16/16.
+ * The Event class defines an event, including the description, time it occurs, and the title.
+ *
+ * @author  Nick Zarate
+ * @version 1.0
+ * @since   2016-06-29
  */
 public class Event {
     String description;
