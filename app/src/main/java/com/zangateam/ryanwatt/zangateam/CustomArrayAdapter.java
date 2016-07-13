@@ -54,7 +54,7 @@ public class CustomArrayAdapter extends ArrayAdapter<Event> {
         holder.date = (TextView) convertView.findViewById(R.id.event_date);
 
         //setting data into the the ViewHolder.
-        holder.image.setImageBitmap(bitmap);
+//        holder.image.setImageBitmap(bitmap);
         holder.title.setText(list.get(position).getTitle());
         holder.date.setText(list.get(position).getDate());
 

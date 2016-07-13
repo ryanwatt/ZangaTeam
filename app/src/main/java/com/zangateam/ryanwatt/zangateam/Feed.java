@@ -3,6 +3,7 @@ package com.zangateam.ryanwatt.zangateam;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import android.util.Log;
@@ -35,8 +36,7 @@ public class Feed extends AsyncTask<Void, Void, Void> {
     URL url;
     Filter filter;
     List<Event> events = new ArrayList<Event>();
-    ArrayAdapter<String> adapter;
-
+    ArrayAdapter<Event> adapter;
 
 
     public Feed(Context context) {
@@ -74,10 +74,9 @@ public class Feed extends AsyncTask<Void, Void, Void> {
      *
      * @param data An XML document (corresponds to an RSS Feed)
      * @return void Nothing is returned, only the List of Events is populated.
-     *
-     * @author  Raleigh Wayland
+     * @author Raleigh Wayland
      * @version 1.0
-     * @since   2016-06-29
+     * @since 2016-06-29
      */
     private void getEvents(Document data) {
         if (data != null) {
@@ -128,12 +127,19 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    private void populateListView() {
-        View rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+    public ListView populateListView() {
+        View rootView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
         ListView listView = (ListView) rootView.findViewById(R.id.eventsList);
 
+//<<<<<<< HEAD
         CustomArrayAdapter dataAdapter = new CustomArrayAdapter(this.context, R.id.title, (ArrayList<Event>) events);
         listView.setAdapter(dataAdapter);
-    }
+//=======
+//        adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, events);
+//        listView.setAdapter(adapter);
 
+        return listView;
+
+//>>>>>>> a0fd7c0043ee217b293cd09e37e80984e2a51e9b
+    }
 }
