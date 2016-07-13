@@ -1,6 +1,9 @@
 package com.zangateam.ryanwatt.zangateam;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +27,7 @@ import java.util.ArrayList;
  */
 public class CustomArrayAdapter extends ArrayAdapter<Event> {
     private ArrayList<Event> list;
+    private RetrieveImageBitmap bitmap;
 
     public CustomArrayAdapter(Context context, int textViewResourceId, ArrayList<Event> eventList)
     {
@@ -38,38 +49,14 @@ public class CustomArrayAdapter extends ArrayAdapter<Event> {
         convertView = inflator.inflate(R.layout.event_item, null);
 
         //setting the views into the ViewHolder.
-        holder.title = (TextView) convertView.findViewById(R.id.tvItemTitle);
-        holder.changeRowStatus = (ImageView) convertView.findViewById(R.id.iStatus);
-        holder.changeRowStatus.setTag(position);
-
-        //define an onClickListener for the ImageView.
-        holder.changeRowStatus.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(activity, "Image from row " + position + " was pressed", Toast.LENGTH_LONG).show();
-            }
-        });
-        holder.checked = (CheckBox) convertView.findViewById(R.id.cbCheckListItem);
-        holder.checked.setTag(position);
-
-        //define an onClickListener for the CheckBox.
-        holder.checked.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                //assign check-box state to the corresponding object in list.
-                CheckBox checkbox = (CheckBox) v;
-                rowDataList.get(position).setChecked(checkbox.isChecked());
-                Toast.makeText(activity, "CheckBox from row " + position + " was checked", Toast.LENGTH_LONG).show();
-            }
-        });
+        holder.title = (TextView) convertView.findViewById(R.id.event_title);
+        holder.image = (ImageView) convertView.findViewById(R.id.event_image);
+        holder.date = (TextView) convertView.findViewById(R.id.event_date);
 
         //setting data into the the ViewHolder.
-        holder.title.setText(rowDataList.get(position).getName());
-        holder.checked.setChecked(rowDataList.get(position).isChecked());
+        holder.image.setImageBitmap(bitmap);
+        holder.title.setText(list.get(position).getTitle());
+        holder.date.setText(list.get(position).getDate());
 
         //return the row view.
         return convertView;

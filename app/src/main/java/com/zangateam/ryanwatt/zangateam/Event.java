@@ -5,27 +5,29 @@ package com.zangateam.ryanwatt.zangateam;
  */
 public class Event {
     String description;
-    String time;
+    String date;
     String title;
-    // Insert photo here
+    String imageUrl;
 
     public String getDescription() {
         return description;
     }
-    public String getTime() {
-        return time;
+    public String getDate() {
+        return date;
     }
     public String getTitle() {
         return title;
     }
+    public String getImageUrl() { return imageUrl; }
 
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setTime(String time) {
-        this.time = time;
+    public void setDate(String date) {
+        this.date = date;
     }
     public void setTitle(String title) {
         this.title = title;
     }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

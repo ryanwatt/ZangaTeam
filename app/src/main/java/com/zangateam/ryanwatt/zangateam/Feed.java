@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import android.widget.ListView;
@@ -84,11 +85,14 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                                 event.setTitle(current.getTextContent());
                                 break;
                             case "pubDate":
-                                event.setTime(current.getTextContent());
+                                event.setDate(current.getTextContent());
                                 break;
                             case "description":
                                 event.setDescription(current.getTextContent());
                                 break;
+                            case "enclosure":
+                                Element e = (Element)current;
+                                event.setImageUrl(e.getAttribute("url"));
                         }
                     }
                     events.add(event);
@@ -117,20 +121,8 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         View rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
         ListView listView = (ListView) rootView.findViewById(R.id.eventsList);
 
-        List<String> titleList = new ArrayList<>();
-
-        for (Event event : events) {
-            titleList.add(event.getTitle());
-        }
-
-        adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, titleList);
-        listView.setAdapter(adapter);
-
-//        for (Event event : events) {
-//            Log.d("title", event.getTitle());
-//            Log.d("time", event.getTime());
-//            Log.d("description", event.getDescription());
-//        }
+        CustomArrayAdapter dataAdapter = new CustomArrayAdapter(this.context, R.id.title, (ArrayList<Event>) events);
+        listView.setAdapter(dataAdapter);
     }
 
 }

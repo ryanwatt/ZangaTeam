@@ -2,5 +2,6 @@
     <string name="app_name">ZangaTeam</string>
     <string name="eventsList">eventsList</string>
     <string name="event_title">event_title</string>
-    <string name="event_time">event_time</string>
+    <string name="event_date">event_date</string>
+    <string name="event_image">event_image</string>
 </resources>
