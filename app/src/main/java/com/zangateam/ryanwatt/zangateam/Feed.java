@@ -3,10 +3,12 @@ package com.zangateam.ryanwatt.zangateam;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import android.widget.ListView;
@@ -34,8 +36,7 @@ public class Feed extends AsyncTask<Void, Void, Void> {
     URL url;
     Filter filter;
     List<Event> events = new ArrayList<Event>();
-    ArrayAdapter<String> adapter;
-
+    ArrayAdapter<Event> adapter;
 
 
     public Feed(Context context) {
@@ -73,10 +74,9 @@ public class Feed extends AsyncTask<Void, Void, Void> {
      *
      * @param data An XML document (corresponds to an RSS Feed)
      * @return void Nothing is returned, only the List of Events is populated.
-     *
-     * @author  Raleigh Wayland
+     * @author Raleigh Wayland
      * @version 1.0
-     * @since   2016-06-29
+     * @since 2016-06-29
      */
     private void getEvents(Document data) {
         if (data != null) {
@@ -124,24 +124,15 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    private void populateListView() {
-        View rootView = ((Activity)context).getWindow().getDecorView().findViewById(android.R.id.content);
+    public ListView populateListView() {
+        View rootView = ((Activity) context).getWindow().getDecorView().findViewById(android.R.id.content);
         ListView listView = (ListView) rootView.findViewById(R.id.eventsList);
 
-        List<String> titleList = new ArrayList<>();
-
-        for (Event event : events) {
-            titleList.add(event.getTitle());
-        }
-
-        adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, titleList);
+        adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, events);
         listView.setAdapter(adapter);
 
-//        for (Event event : events) {
-//            Log.d("title", event.getTitle());
-//            Log.d("time", event.getTime());
-//            Log.d("description", event.getDescription());
-//        }
+        return listView;
+
     }
 
 }
