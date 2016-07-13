@@ -68,6 +68,17 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         return null;
     }
 
+    /**
+     * The getEvents method takes data (in xml format) and parses through the file, populating the
+     * List of Events.
+     *
+     * @param data An XML document (corresponds to an RSS Feed)
+     * @return void Nothing is returned, only the List of Events is populated.
+     *
+     * @author  Raleigh Wayland
+     * @version 1.0
+     * @since   2016-06-29
+     */
     private void getEvents(Document data) {
         if (data != null) {
             Element root = data.getDocumentElement();
