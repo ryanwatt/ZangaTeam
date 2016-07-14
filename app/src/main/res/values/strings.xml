@@ -3,4 +3,20 @@
     <string name="eventsList">eventsList</string>
     <string name="event_title">event_title</string>
     <string name="event_time">event_time</string>
+    <string-array name="category_array">
+        <item>All</item>
+        <item>Highlighted Events</item>
+        <item>Outdoor</item>
+        <item>Service</item>
+        <item>Social</item>
+        <item>Sports</item>
+        <item>Talent</item>
+        <item>Wellness</item>
+        <item>Concerts</item>
+        <item>Music</item>
+        <item>Theatre</item>
+        <item>Devotional</item>
+        <item>Get Connected</item>
+        <item>Graduation</item>
+    </string-array>
 </resources>
