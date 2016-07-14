@@ -44,4 +44,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void goToFilter(View view) {
+        Intent intent = new Intent(MainActivity.this, FilterSelection.class);
+
+        startActivity(intent);
+    }
+
 }
