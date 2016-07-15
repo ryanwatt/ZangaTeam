@@ -18,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".EventDetails" />
-        <activity android:name=".FilterSelection"></activity>
+        <activity android:name=".FilterSelection" />
+        <activity android:name=".SavedEvents" />
+        <activity android:name=".SavedEventDetails"></activity>
     </application>
 
 </manifest>
