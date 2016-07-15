@@ -212,6 +212,8 @@ public class Feed extends AsyncTask<Void, Void, Void> {
 
         adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, events);
         listView.setAdapter(adapter);
+//        CustomArrayAdapter dataAdapter = new CustomArrayAdapter(this.context, R.id.title, (ArrayList<Event>) events);
+//        listView.setAdapter(dataAdapter);
 
         return listView;
     }

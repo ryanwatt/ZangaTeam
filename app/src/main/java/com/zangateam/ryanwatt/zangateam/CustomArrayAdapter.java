@@ -60,7 +60,6 @@ public class CustomArrayAdapter extends ArrayAdapter<Event> {
     }
 
     public static class ViewHolder {
-        public ImageView image;
         public TextView title;
         public TextView date;
     }

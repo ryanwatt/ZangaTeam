@@ -62,7 +62,7 @@ public class FilterSelection extends AppCompatActivity {
 
         Intent intent = new Intent(FilterSelection.this, MainActivity.class);
         intent.putExtras(bundle);
-
+        keywordList = new ArrayList<>();
         startActivity(intent);
     }
 }
