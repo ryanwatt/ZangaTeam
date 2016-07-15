@@ -38,7 +38,7 @@
         android:layout_marginTop="32dp"
         android:layout_below="@+id/dateView"
         android:layout_centerHorizontal="true"
-        android:maxLines = "10"
+        android:maxLines = "12"
         android:scrollbars = "vertical"
         android:textSize="50px" />
 
@@ -48,5 +48,6 @@
         android:text="Save Event"
         android:id="@+id/saveEventButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp" />
 </RelativeLayout>
