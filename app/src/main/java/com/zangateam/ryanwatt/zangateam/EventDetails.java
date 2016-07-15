@@ -3,6 +3,7 @@ package com.zangateam.ryanwatt.zangateam;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 public class EventDetails extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class EventDetails extends AppCompatActivity {
         titleView = (TextView) findViewById(R.id.titleView);
         dateView = (TextView) findViewById(R.id.dateView);
         descriptionView = (TextView) findViewById(R.id.descriptionView);
+        descriptionView.setMovementMethod(new ScrollingMovementMethod());
 
         if (!bundle.isEmpty()) {
             titleView.setText(bundle.getString("title"));
