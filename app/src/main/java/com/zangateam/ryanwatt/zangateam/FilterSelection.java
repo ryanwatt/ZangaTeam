@@ -9,11 +9,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FilterSelection extends AppCompatActivity {
     private Spinner spinner;
-    private EditText keywordInput;
+
     private EditText startDateInput;
     private EditText endDateInput;
+    private List<String> keywordList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +33,28 @@ public class FilterSelection extends AppCompatActivity {
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        keywordInput = (EditText) findViewById(R.id.keywordInput);
         startDateInput = (EditText) findViewById(R.id.startDateInput);
         endDateInput = (EditText) findViewById(R.id.endDateInput);
 
     }
 
+    public void addKeyword(View view) {
+        EditText keywordInput = (EditText) findViewById(R.id.keywordInput);
+        String keyWordResult = keywordInput.getText().toString();
+        keywordList.add(keyWordResult);
+
+        keywordInput.setText("");
+    }
+
     public void collectFilterInput(View view) {
         String categoryResult = spinner.getSelectedItem().toString();
-        String keyWordResult = keywordInput.getText().toString();
 
         String startDateResult = startDateInput.getText().toString();
         String endDateResult = endDateInput.getText().toString();
 
         Bundle bundle = new Bundle();
         bundle.putString("category", categoryResult);
-        bundle.putString("keyword", keyWordResult);
+        bundle.putStringArrayList("keywords", (ArrayList<String>) keywordList);
         bundle.putString("startDate", startDateResult);
         bundle.putString("endDate", endDateResult);
 
