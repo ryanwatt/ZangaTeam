@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
     Feed feed;
     ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +42,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void goToFilter(View view) {
+        Intent intent = new Intent(MainActivity.this, FilterSelection.class);
+
+        startActivity(intent);
     }
 }

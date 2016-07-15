@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".EventDetails" />
         <activity android:name=".FilteredList"></activity>
+        <activity android:name=".FilterSelection"></activity>
     </application>
 
 </manifest>
