@@ -49,6 +49,11 @@ public class Feed extends AsyncTask<Void, Void, Void> {
         progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Loading...");
         filter = new Filter();
+        ArrayList<String> keywords = new ArrayList<String>();
+        bundle.putString("category", "All");
+        bundle.putStringArrayList("keywords", keywords);
+        bundle.putString("startDate", "");
+        bundle.putString("endDate", "");
     }
 
     @Override
@@ -100,9 +105,7 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                     // being parsed.
                     boolean inDateRange = true;
                     boolean hasKeywords = false;
-                    List<String> temp = new ArrayList<String>();
-//                    temp.add("Recital");
-                    List<String> keywords = temp;//bundle.getStringArrayList("keywords");
+                    List<String> keywords = bundle.getStringArrayList("keywords");
                     if (keywords.size() == 0) {
                         hasKeywords = true;
                     }
@@ -120,12 +123,10 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                         Node current = itemChildren.item(j);
                         switch (current.getNodeName()) {
                             case "title":
-                                if (keywords.size() > 0) {
-                                    for (String val: getWordList(current.getTextContent())) {
-                                        for (int k = 0; k < keywords.size(); k++) {
-                                            if (val.equals(keywords.get(k))) {
-                                                words.set(k, "1");
-                                            }
+                                for (String val: getWordList(current.getTextContent())) {
+                                    for (int k = 0; k < keywords.size(); k++) {
+                                        if (val.equals(keywords.get(k))) {
+                                            words.set(k, "1");
                                         }
                                     }
                                 }
@@ -135,18 +136,20 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                                 Calendar start = new GregorianCalendar();
                                 Calendar end = new GregorianCalendar();
                                 Calendar eventDate = new GregorianCalendar();
-
-                                String tempStartDate = "07/10/2016";
-                                String tempEndDate = "07/22/2016";
-
-                                int startMonth = Integer.parseInt(tempStartDate.substring(0, 2));
-                                int startDay = Integer.parseInt(tempStartDate.substring(3, 5));
-                                int startYear = Integer.parseInt(tempStartDate.substring(6, 10));
-                                int endMonth = Integer.parseInt(tempEndDate.substring(0, 2));
-                                int endDay = Integer.parseInt(tempEndDate.substring(3, 5));
-                                int endYear = Integer.parseInt(tempEndDate.substring(6, 10));
-                                start.set(startYear, startMonth, startDay);
-                                end.set(endYear, endMonth, endDay);
+                                String startDate = bundle.getString("startDate");
+                                String endDate = bundle.getString("endDate");
+                                if (startDate.length() != 0) {
+                                    int startMonth = Integer.parseInt(startDate.substring(0, 2));
+                                    int startDay = Integer.parseInt(startDate.substring(3, 5));
+                                    int startYear = Integer.parseInt(startDate.substring(6, 10));
+                                    start.set(startYear, startMonth, startDay);
+                                }
+                                if (endDate.length() != 0) {
+                                    int endMonth = Integer.parseInt(endDate.substring(0, 2));
+                                    int endDay = Integer.parseInt(endDate.substring(3, 5));
+                                    int endYear = Integer.parseInt(endDate.substring(6, 10));
+                                    end.set(endYear, endMonth, endDay);
+                                }
 
                                 // Retrieve the day, month, year, and time of the event, and compare
                                 // it to the time filter set by the user.
@@ -154,18 +157,18 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                                 int month = getMonthNumber(current.getTextContent().substring(8, 11));
                                 int year = Integer.parseInt(current.getTextContent().substring(12, 16));
                                 eventDate.set(year, month, day);
-                                if (eventDate.before(start) || eventDate.after(end)) {
+                                if ((startDate.length() != 0) && eventDate.before(start) ||
+                                    (endDate.length() != 0) && eventDate.after(end))
+                                {
                                     inDateRange = false;
                                     event.setTime(current.getTextContent());
                                 }
                                 break;
                             case "description":
-                                if (keywords.size() > 0) {
-                                    for (String val : getWordList(current.getTextContent())) {
-                                        for (int k = 0; k < keywords.size(); k++) {
-                                            if (val.equals(keywords.get(k))) {
-                                                words.set(k, "1");
-                                            }
+                                for (String val : getWordList(current.getTextContent())) {
+                                    for (int k = 0; k < keywords.size(); k++) {
+                                        if (val.equals(keywords.get(k))) {
+                                            words.set(k, "1");
                                         }
                                     }
                                 }
