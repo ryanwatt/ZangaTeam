@@ -50,4 +50,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToSaved(View view) {
+        Intent intent = new Intent(MainActivity.this, SavedEvents.class);
+
+        startActivity(intent);
+    }
+
 }
