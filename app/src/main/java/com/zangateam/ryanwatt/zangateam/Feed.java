@@ -42,7 +42,7 @@ public class Feed extends AsyncTask<Void, Void, Void> {
     Filter filter;
     List<Event> events = new ArrayList<Event>();
     ArrayAdapter<Event> adapter;
-    Bundle bundle;
+    Bundle bundle = new Bundle();
 
     public Feed(Context context) {
         this.context = context;
@@ -71,12 +71,8 @@ public class Feed extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... voids) {
-        String category = getCategoryUrl("All");//bundle.getString("category"));
+        String category = getCategoryUrl(bundle.getString("category"));
         getEvents(getData(category));
-//        List<String> addresses = filter.getCategories();
-//        for (String address : addresses) {
-//            getEvents(getData(address));
-//        }
         return null;
     }
 
@@ -129,6 +125,10 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                                             words.set(k, "1");
                                         }
                                     }
+                                }
+                                String detritus = current.getTextContent().substring(0, 4);
+                                if (detritus.equals("\"Det")) {
+                                    inDateRange = false;
                                 }
                                 event.setTitle(current.getTextContent());
                                 break;
@@ -189,7 +189,6 @@ public class Feed extends AsyncTask<Void, Void, Void> {
                 }
             }
         }
-        Log.d("TIME", "Finished parsing");
     }
 
     public Document getData(String address) {
