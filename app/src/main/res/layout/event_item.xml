@@ -4,20 +4,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="375px"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Title Shown Here"
         android:id="@+id/event_title"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="false" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="375px"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Time Shown Here"
         android:id="@+id/event_time"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/event_title" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="false" />
 </RelativeLayout>

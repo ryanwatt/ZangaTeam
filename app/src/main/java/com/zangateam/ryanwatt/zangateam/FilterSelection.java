@@ -3,6 +3,7 @@ package com.zangateam.ryanwatt.zangateam;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -48,6 +49,7 @@ public class FilterSelection extends AppCompatActivity {
 
     public void collectFilterInput(View view) {
         String categoryResult = spinner.getSelectedItem().toString();
+//        Log.d("CATEGORY", categoryResult);
 
         String startDateResult = startDateInput.getText().toString();
         String endDateResult = endDateInput.getText().toString();
@@ -60,7 +62,7 @@ public class FilterSelection extends AppCompatActivity {
 
         Intent intent = new Intent(FilterSelection.this, MainActivity.class);
         intent.putExtras(bundle);
-
+        keywordList = new ArrayList<>();
         startActivity(intent);
     }
 }

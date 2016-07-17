@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
     Feed feed;
@@ -21,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         feed = new Feed(this);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            feed.setBundle(extras);
+        }
         feed.execute();
 
         listView = feed.populateListView();
@@ -55,5 +57,4 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
-
 }
